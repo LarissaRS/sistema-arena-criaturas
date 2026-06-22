@@ -6,7 +6,7 @@ import model.Ataque;
 public class Golem extends Criatura {
 
     public Golem(String nome){
-        super(nome, "Terra", 20, 30, 150, new AfinidadeTerra());
+        super(nome, "Terra", 20, 30, 150);
     }
 
     @Override

@@ -1,10 +1,11 @@
 package criaturas;
 
+import habilidades.HabilidadeEspecial;
+import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
-import model.Ataque;
 
-public class LoboSombrio extends Criatura implements HabilidadeEspecial {
+public class LoboSombrio extends Criatura implements HabilidadeEspecial, HabilidadePassiva {
 
     public LoboSombrio(String nome) {
         super(nome, "Sombras", 35, 10, 100);
@@ -25,5 +26,13 @@ public class LoboSombrio extends Criatura implements HabilidadeEspecial {
         System.out.println(getNome() + " atacou nas sombras!");
 
         super.atacar(alvo, ataque);
+    }
+
+    @Override
+    public double aplicarAfinidade(Criatura.Tipo tipoInimigo) {
+        return switch (tipoInimigo) {
+            case LUZ -> 1.5;
+            default  -> 1.0;
+        };
     }
 }

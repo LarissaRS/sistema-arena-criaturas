@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Criatura{
+public abstract class Criatura {
 
     private String nome;
     private String tipo;
@@ -14,26 +14,19 @@ public abstract class Criatura{
 
     private List<Ataque> ataques;
 
-    private HabilidadePassiva habilidadePassiva;
-
-    public Criatura(String nome, String tipo, int forca, int defesa, int vidaMaxima, HabilidadePassiva habilidadePassiva) {
+    public Criatura(String nome, String tipo, int forca, int defesa, int vidaMaxima) {
         this.nome = nome;
         this.tipo = tipo;
         this.forca = forca;
         this.defesa = defesa;
         this.pontosDeVida = vidaMaxima;
         this.vidaMaxima = vidaMaxima;
-        this.habilidadePassiva = habilidadePassiva;
-        
+
         this.ataques = new ArrayList<>();
     }
 
-    public HabilidadePassiva getHabilidadePassiva() {
-        return habilidadePassiva;
-    }
-
-    public void setHabilidadePassiva(HabilidadePassiva habilidadePassiva) {
-        this.habilidadePassiva = habilidadePassiva;
+    public enum Tipo {
+        FOGO, TERRA, AGUA, LUZ, SOMBRA, AR
     }
 
     public String getNome() {
@@ -111,8 +104,6 @@ public abstract class Criatura{
         }
 
         int dano = ataque.calcularDano(this.forca, alvo.getDefesa());
-
-        dano = habilidadePassiva.modificarDano(this, alvo, dano);
 
         System.out.println(nome + " usou " + ataque.getNome() + " em " + alvo.getNome() + " causando " + dano + " de dano.");
 

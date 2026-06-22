@@ -1,5 +1,6 @@
 package criaturas;
 
+import habilidades.HabilidadeEspecial;
 import model.Criatura;
 import model.Ataque;
 

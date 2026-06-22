@@ -6,7 +6,7 @@ import model.Ataque;
 public class Grifo extends Criatura {
 
     public Grifo(String nome) {
-        super(nome, "Ar", 32, 15, 110, new AfinidadeAr());
+        super(nome, "Ar", 32, 15, 110);
     }
     @Override
     public void atacar(Criatura alvo, Ataque ataque) {

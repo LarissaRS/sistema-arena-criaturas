@@ -6,7 +6,7 @@ import model.Ataque;
 public class Dragao extends Criatura {
 
     public Dragao(String nome) {
-        super(nome, "Fogo", 30, 15, 120, new AfinidadeFogo());
+        super(nome, "Fogo", 30, 15, 120);
     }
 
     @Override
