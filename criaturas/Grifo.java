@@ -14,11 +14,9 @@ public class Grifo extends Criatura implements HabilidadePassiva {
     public void atacar(Criatura alvo, Ataque ataque) {
 
         System.out.println(getNome() + " atacou com ventos cortantes!");
-
-        int dano = ataque.calcularDano(getForca(), alvo.getDefesa()) + 5;
-
-        alvo.receberDano(dano);
-        
+        setForca(getForca()+5);
+        super.atacar(alvo, ataque);
+        setForca(getForca()-5);
     }
 
     @Override
