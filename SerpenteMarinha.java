@@ -1,3 +1,8 @@
+package criaturas;
+
+import model.Criatura;
+import model.Ataque;
+
 public class SerpenteMarinha extends Criatura {
 
     public SerpenteMarinha(String nome) {
