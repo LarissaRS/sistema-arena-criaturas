@@ -1,12 +1,14 @@
 package criaturas;
 
+import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
+import model.Tipo;
 
-public class Grifo extends Criatura {
+public class Grifo extends Criatura implements HabilidadePassiva {
 
     public Grifo(String nome) {
-        super(nome, "Ar", 32, 15, 110);
+        super(nome, Tipo.AR, 32, 15, 110);
     }
     @Override
     public void atacar(Criatura alvo, Ataque ataque) {
@@ -18,5 +20,13 @@ public class Grifo extends Criatura {
         alvo.receberDano(dano);
         
     }
-    
+
+    @Override
+    public double aplicarAfinidade(Tipo tipoInimigo) {
+        return switch (tipoInimigo) {
+            case TERRA -> 1.5;
+            case FOGO -> 0.5;
+            default -> 1.0;
+        };
+    }
 }

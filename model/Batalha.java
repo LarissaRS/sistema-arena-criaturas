@@ -1,5 +1,8 @@
 package model;
 
+import java.util.List;
+import java.util.Random;
+
 public class Batalha{
 
     private Criatura criatura1;
@@ -10,6 +13,12 @@ public class Batalha{
         this.criatura1 = criatura1;
         this.criatura2 = criatura2;
         this.turnoAtual = 1;
+    }
+
+    private Ataque selecionarAtaque(Criatura criatura) {
+        Random rand = new Random();
+        List<Ataque> ataques = criatura.getAtaques();
+        return ataques.get(rand.nextInt(ataques.size()));
     }
 
     public Criatura getCriatura1() {
@@ -77,11 +86,11 @@ public class Batalha{
 
         System.out.println("\n===== TURNO " + getTurnoAtual() + " =====");
 
-        Ataque ataque1 = criatura1.getAtaques().get(0);
+        Ataque ataque1 = selecionarAtaque(criatura1);
         criatura1.atacar(criatura2, ataque1);
 
         if (criatura2.estaViva()) {
-            Ataque ataque2 = criatura2.getAtaques().get(0);
+            Ataque ataque2 = selecionarAtaque(criatura2);
             criatura2.atacar(criatura1, ataque2);
         }
 

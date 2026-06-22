@@ -4,11 +4,12 @@ import habilidades.HabilidadeEspecial;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
+import model.Tipo;
 
 public class LoboSombrio extends Criatura implements HabilidadeEspecial, HabilidadePassiva {
 
     public LoboSombrio(String nome) {
-        super(nome, "Sombras", 35, 10, 100);
+        super(nome, Tipo.SOMBRA, 35, 10, 100);
     }
 
 
@@ -29,7 +30,7 @@ public class LoboSombrio extends Criatura implements HabilidadeEspecial, Habilid
     }
 
     @Override
-    public double aplicarAfinidade(Criatura.Tipo tipoInimigo) {
+    public double aplicarAfinidade(Tipo tipoInimigo) {
         return switch (tipoInimigo) {
             case LUZ -> 1.5;
             default  -> 1.0;

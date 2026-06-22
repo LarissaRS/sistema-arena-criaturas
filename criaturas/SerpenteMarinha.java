@@ -3,11 +3,12 @@ package criaturas;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
+import model.Tipo;
 
 public class SerpenteMarinha extends Criatura implements HabilidadePassiva {
 
     public SerpenteMarinha(String nome) {
-        super(nome, "Água", 28, 20, 130);
+        super(nome, Tipo.AGUA, 28, 20, 130);
     }
 
     @Override
@@ -21,11 +22,11 @@ public class SerpenteMarinha extends Criatura implements HabilidadePassiva {
     }
 
     @Override
-    public double aplicarAfinidade(Criatura.Tipo tipoInimigo) {
+    public double aplicarAfinidade(Tipo tipoInimigo) {
         return switch (tipoInimigo) {
             case FOGO -> 1.5;
             case AR -> 0.5;
             default -> 1;
-        }
+        };
     }
 }

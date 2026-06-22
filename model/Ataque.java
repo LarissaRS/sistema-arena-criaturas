@@ -8,6 +8,9 @@ public class Ataque{
     private double precisao;
 
     public Ataque(String nome, int danoBase, String tipo, String descricao, double precisao) {
+        if(danoBase <=0) {
+            throw new IllegalArgumentException("Dano base deve ser maior que zero.");
+        }
         this.nome = nome;
         this.danoBase = danoBase;
         this.tipo = tipo;
@@ -55,9 +58,9 @@ public class Ataque{
         this.precisao = precisao;
     }
 
-    public int calcularDano(int forca, int defesa) {
+    public int calcularDano(int forca, int defesa, double multiplicador) {
 
-        int danoFinal = danoBase + forca - defesa;
+        int danoFinal = (int) ((danoBase + forca - defesa) * multiplicador);
 
         if (danoFinal < 0) {
             danoFinal = 0;

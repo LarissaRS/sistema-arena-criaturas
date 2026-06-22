@@ -1,7 +1,7 @@
 package habilidades;
 
-import model.Criatura;
+import model.Tipo;
 
 public interface HabilidadePassiva {
-    double aplicarAfinidade(Criatura.Tipo tipoInimigo);
+    double aplicarAfinidade(Tipo tipoInimigo);
 }

@@ -2,11 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import habilidades.HabilidadePassiva;
 
 public abstract class Criatura {
 
     private String nome;
-    private String tipo;
+    private Tipo tipo;
     private int forca;
     private int defesa;
     private int pontosDeVida;
@@ -14,7 +15,7 @@ public abstract class Criatura {
 
     private List<Ataque> ataques;
 
-    public Criatura(String nome, String tipo, int forca, int defesa, int vidaMaxima) {
+    public Criatura(String nome, Tipo tipo, int forca, int defesa, int vidaMaxima) {
         this.nome = nome;
         this.tipo = tipo;
         this.forca = forca;
@@ -25,10 +26,6 @@ public abstract class Criatura {
         this.ataques = new ArrayList<>();
     }
 
-    public enum Tipo {
-        FOGO, TERRA, AGUA, LUZ, SOMBRA, AR
-    }
-
     public String getNome() {
         return nome;
     }
@@ -37,11 +34,11 @@ public abstract class Criatura {
         this.nome = nome;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
@@ -103,7 +100,9 @@ public abstract class Criatura {
             return;
         }
 
-        int dano = ataque.calcularDano(this.forca, alvo.getDefesa());
+        double multiplicador = 1.0;
+
+        int dano = ataque.calcularDano(this.forca, alvo.getDefesa(), multiplicador);
 
         System.out.println(nome + " usou " + ataque.getNome() + " em " + alvo.getNome() + " causando " + dano + " de dano.");
 
@@ -122,12 +121,7 @@ public abstract class Criatura {
     } 
 
     public boolean estaViva() {
-        if(pontosDeVida > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return pontosDeVida > 0;
     }
 
     public String toString(){
