@@ -1,5 +1,8 @@
 package model;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class Ataque{
     private String nome;
     private int danoBase;
@@ -16,6 +19,41 @@ public class Ataque{
         this.tipo = tipo;
         this.descricao = descricao;
         this.precisao = precisao;
+    }
+
+    private Scanner sc = new Scanner(System.in);
+
+    private Ataque selecionarAtaque(Ataque criatura){
+
+        List<Ataque> ataques = criatura.getAtaques();
+
+        System.out.println("\nEscolha o ataque de " + criatura.getNome() + ":");
+        for(int i = 0; i < ataques.size(); i++) {
+            Ataque a = ataques.get(i);
+            System.out.println("[" + (i + 1) + "] " + a.getNome() +
+                    " - Dano: " + a.getDanoBase() +
+                    " - Tipo: " + a.getTipo() +
+                    " - Precisão: " + a.getPrecisao());
+        }
+
+        int escolha = -1;
+        while(escolha < 1 || escolha > ataques.size()) {
+            System.out.println("Digite o número do ataque: ");
+            try {
+                escolha = Integer.parseInt(sc.nextLine().trim());
+                if(escolha < 1 || escolha > ataques.size()) {
+                    System.out.println("Número de ataque inválido.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada inválida, digite um número.");
+            }
+        }
+
+        return ataques.get(escolha - 1);
+    }
+
+    private List<Ataque> getAtaques() {
+        return null;
     }
 
     public String getNome() {

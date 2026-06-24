@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.Random;
+import habilidades.HabilidadeEspecial;
 
 public class Batalha{
 
@@ -19,6 +20,17 @@ public class Batalha{
         Random rand = new Random();
         List<Ataque> ataques = criatura.getAtaques();
         return ataques.get(rand.nextInt(ataques.size()));
+    }
+
+    private void tentaUsarHbailidadeEspecial(Criatura criatura) {
+        if(!(criatura instanceof HabilidadeEspecial habilidade)) {
+            return;
+        }
+        boolean vidaBaixa = criatura.getPontosDeVida() < criatura.getVidaMaxima() * 0.4;
+        boolean turnoEspecial = turnoAtual % 3 == 0;
+        if (vidaBaixa || turnoEspecial) {
+            habilidade.usarHabilidadeEspecial();
+        }
     }
 
     public Criatura getCriatura1() {
@@ -85,6 +97,11 @@ public class Batalha{
     public void executarTurno() {
 
         System.out.println("\n===== TURNO " + getTurnoAtual() + " =====");
+
+        tentaUsarHbailidadeEspecial(criatura1);
+        if(criatura2.estaViva()){
+            tentaUsarHbailidadeEspecial(criatura2);
+        }
 
         Ataque ataque1 = selecionarAtaque(criatura1);
         criatura1.atacar(criatura2, ataque1);
