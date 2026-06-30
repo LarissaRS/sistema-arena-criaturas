@@ -9,17 +9,18 @@ public class Batalha{
     private Criatura criatura1;
     private Criatura criatura2;
     private int turnoAtual;
+    private Menu menu;
 
-    public Batalha(Criatura criatura1, Criatura criatura2) {
+    public Batalha(Criatura criatura1, Criatura criatura2, Menu menu) {
         this.criatura1 = criatura1;
         this.criatura2 = criatura2;
         this.turnoAtual = 1;
+        this.menu = menu;
     }
 
     private Ataque selecionarAtaque(Criatura criatura) {
-        Random rand = new Random();
-        List<Ataque> ataques = criatura.getAtaques();
-        return ataques.get(rand.nextInt(ataques.size()));
+        int indice = menu.escolherAtaque(criatura);
+        return criatura.getAtaques().get(indice);
     }
 
     private void tentaUsarHbailidadeEspecial(Criatura criatura) {
