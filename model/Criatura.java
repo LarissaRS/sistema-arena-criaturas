@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import habilidades.HabilidadePassiva;
 import exceptions.AcaoInvalidaException;
 
 public abstract class Criatura {
@@ -90,30 +89,30 @@ public abstract class Criatura {
     }
 
     public void atacar(Criatura alvo, Ataque ataque) throws AcaoInvalidaException {
-    
+
         if (alvo == null) {
             throw new AcaoInvalidaException("O alvo não pode ser nulo.");
         }
-    
+
         if (ataque == null) {
             throw new AcaoInvalidaException("O ataque não pode ser nulo.");
         }
-    
+
         if (!ataques.contains(ataque)) {
             throw new AcaoInvalidaException("Ataque não pertence à criatura.");
         }
-    
+
         if (!estaViva()) {
             throw new AcaoInvalidaException(nome + " está derrotado e não pode atacar.");
         }
-    
+
         double multiplicador = 1.0;
-    
+
         int dano = ataque.calcularDano(this.forca, alvo.getDefesa(), multiplicador);
-    
+
         System.out.println(nome + " usou " + ataque.getNome() + " em " + alvo.getNome()
                 + " causando " + dano + " de dano.");
-    
+
         alvo.receberDano(dano);
     }   
 
