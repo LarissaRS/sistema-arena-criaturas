@@ -1,5 +1,6 @@
 package criaturas;
 
+import exceptions.AcaoInvalidaException;
 import habilidades.HabilidadeEspecial;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
@@ -22,7 +23,7 @@ public class LoboSombrio extends Criatura implements HabilidadeEspecial, Habilid
     }
 
     @Override
-    public void atacar(Criatura alvo, Ataque ataque) {
+    public void atacar(Criatura alvo, Ataque ataque)  throws AcaoInvalidaException{
 
         System.out.println(getNome() + " atacou nas sombras!");
 
