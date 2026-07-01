@@ -1,5 +1,6 @@
 package criaturas;
 
+import exceptions.AcaoInvalidaException;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
@@ -11,7 +12,7 @@ public class Grifo extends Criatura implements HabilidadePassiva {
         super(nome, Tipo.AR, 32, 15, 110);
     }
     @Override
-    public void atacar(Criatura alvo, Ataque ataque) {
+    public void atacar(Criatura alvo, Ataque ataque)  throws AcaoInvalidaException {
 
         System.out.println(getNome() + " atacou com ventos cortantes!");
         setForca(getForca()+5);
