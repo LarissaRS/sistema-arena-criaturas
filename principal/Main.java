@@ -6,13 +6,24 @@ import criaturas.*;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Classe principal do sistema Arena de Criaturas.
+ *
+ * @author Larissa Rocha e João Antônio
+ */
 public class Main {
+
+    /**
+     * Método principal que inicia o jogo.
+     *
+     * @param args argumentos da linha de comando.
+     */
     public static void main(String[] args) {
 
         Menu menu = new Menu();
         boolean jogarNovamente = true;
 
-        while(jogarNovamente) {
+        while (jogarNovamente) {
 
             List<Criatura> criaturas = criarCriaturas();
 
@@ -25,10 +36,13 @@ public class Main {
             int indice2;
             do {
                 indice2 = menu.escolherCriatura(2, criaturas.size());
-                if(indice2 == indice1) {
+
+                if (indice2 == indice1) {
                     System.out.println("Criatura já escolhida, tente outra!");
                 }
-            } while(indice2 == indice1);
+
+            } while (indice2 == indice1);
+
             Criatura criatura2 = criaturas.get(indice2);
 
             menu.exibirCriaturasEscolhidas(criatura1, criatura2);
@@ -42,6 +56,11 @@ public class Main {
         menu.exibirEncerramento();
     }
 
+    /**
+     * Cria a lista inicial de criaturas e seus ataques.
+     *
+     * @return lista de criaturas disponíveis.
+     */
     private static List<Criatura> criarCriaturas() {
 
         List<Criatura> lista = new ArrayList<>();
