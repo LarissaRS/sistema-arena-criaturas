@@ -1,5 +1,6 @@
 package criaturas;
 
+import exceptions.AcaoInvalidaException;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
@@ -12,10 +13,8 @@ public class Dragao extends Criatura implements HabilidadePassiva {
     }
 
     @Override
-    public void atacar(Criatura alvo, Ataque ataque) {
-
-        System.out.println(getNome() + " lançou chamas!");
-
+    public void atacar(Criatura alvo, Ataque ataque)  throws AcaoInvalidaException{
+        
         super.atacar(alvo, ataque);
     }
 
