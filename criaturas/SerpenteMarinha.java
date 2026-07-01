@@ -1,31 +1,23 @@
 package criaturas;
 
 import exceptions.AcaoInvalidaException;
-import habilidades.HabilidadeEspecial;
 import habilidades.HabilidadePassiva;
 import model.Criatura;
 import model.Ataque;
 import model.Tipo;
 
-public class LoboSombrio extends Criatura implements HabilidadeEspecial, HabilidadePassiva {
+public class SerpenteMarinha extends Criatura implements HabilidadePassiva {
 
-    public LoboSombrio(String nome) {
-        super(nome, Tipo.SOMBRA, 35, 10, 100);
-    }
-
-
-    @Override
-    public void usarHabilidadeEspecial() {
-
-        setForca(getForca() + 10);
-
-        System.out.println(getNome() + " envolveu-se nas sombras e ganhou 10 de força!");
+    public SerpenteMarinha(String nome) {
+        super(nome, Tipo.AGUA, 28, 20, 130);
     }
 
     @Override
-    public void atacar(Criatura alvo, Ataque ataque)  throws AcaoInvalidaException{
+    public void atacar(Criatura alvo, Ataque ataque) throws AcaoInvalidaException{
 
-        System.out.println(getNome() + " atacou nas sombras!");
+        System.out.println(getNome() + " lançou uma onda poderosa!");
+
+        alvo.setForca(alvo.getForca() - 2);
 
         super.atacar(alvo, ataque);
     }
@@ -33,8 +25,9 @@ public class LoboSombrio extends Criatura implements HabilidadeEspecial, Habilid
     @Override
     public double aplicarAfinidade(Tipo tipoInimigo) {
         return switch (tipoInimigo) {
-            case LUZ -> 1.5;
-            default  -> 1.0;
+            case FOGO -> 1.5;
+            case AR -> 0.5;
+            default -> 1;
         };
     }
 }
