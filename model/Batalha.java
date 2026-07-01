@@ -1,8 +1,7 @@
 package model;
 
-import java.util.List;
-import java.util.Random;
 import habilidades.HabilidadeEspecial;
+import exceptions.AcaoInvalidaException;
 
 public class Batalha{
 
@@ -23,7 +22,7 @@ public class Batalha{
         return criatura.getAtaques().get(indice);
     }
 
-    private void tentaUsarHbailidadeEspecial(Criatura criatura) {
+    private void tentaUsarHabilidadeEspecial(Criatura criatura) {
         if(!(criatura instanceof HabilidadeEspecial habilidade)) {
             return;
         }
@@ -99,17 +98,27 @@ public class Batalha{
 
         System.out.println("\n===== TURNO " + getTurnoAtual() + " =====");
 
-        tentaUsarHbailidadeEspecial(criatura1);
+        tentaUsarHabilidadeEspecial(criatura1);
         if(criatura2.estaViva()){
-            tentaUsarHbailidadeEspecial(criatura2);
+            tentaUsarHabilidadeEspecial(criatura2);
         }
 
         Ataque ataque1 = selecionarAtaque(criatura1);
-        criatura1.atacar(criatura2, ataque1);
+
+        try {
+            criatura1.atacar(criatura2, ataque1);
+        } catch (AcaoInvalidaException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
 
         if (criatura2.estaViva()) {
             Ataque ataque2 = selecionarAtaque(criatura2);
-            criatura2.atacar(criatura1, ataque2);
+
+            try {
+                criatura2.atacar(criatura1, ataque2);
+            } catch (AcaoInvalidaException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
         }
 
         criatura1.exibirStatus();
